@@ -42,7 +42,42 @@ $(document).ready(function () {
       $("#header #gnavi").css({ height: `calc(100vh - ${h}px`, top: `${h}px` });
     });
   }
+  mvheight();
+  if ($("#news").length) {
+    newSlider02();
+    moreNew();
+    if ($(window).width() < 1025) {
+      newSlider01();
+    }
+    if ($(window).width() > 768) {
+      $("#h_box04 .product-list .item img").matchHeight();
+    }
 
+    if ($(window).width() > 576) {
+      $(".news_list").each(function (e) {
+        $(".news_list").eq(e).find("li figure").matchHeight();
+      });
+    }
+  }
+  if ($("#product01").length) {
+    productSlider01();
+    $(".product_list01 img").matchHeight();
+  }
+});
+
+function newSlider01() {
+  $(".news_slider01").slick({
+    slidesToShow: 1,
+    infinite: true,
+    dots: true,
+    arrows: false,
+    touchMove: true,
+    pauseOnHover: false,
+    autoplay: false,
+    autoplaySpeed: 3000,
+  });
+}
+function newSlider02() {
   $(".news_slider02").slick({
     slidesToShow: 3,
     infinite: true,
@@ -52,14 +87,54 @@ $(document).ready(function () {
     pauseOnHover: false,
     autoplay: false,
     autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 491,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   });
+}
 
-  mvheight();
-});
-
-
-
-
+function moreNew() {
+  $("#news_box02 .news_list li").each(function (e) {
+    if ($(window).width() > 1024 && e >= 9) {
+      showMoreNews(e);
+    } else if ($(window).width() > 576 && $(window).width() < 1025 && e >= 6) {
+      showMoreNews(e);
+    } else if ($(window).width() < 577 && e >= 3) {
+      showMoreNews(e);
+    }
+  });
+}
+function showMoreNews(e) {
+  $("#news_box02 .btn_more").show();
+  $("#news_box02 .news_list li").eq(e).hide();
+  $("#news_box02 .btn_more").click(function () {
+    $("#news_box02 .news_list li").show();
+    $("#news_box02 .btn_more").hide();
+  });
+}
+function productSlider01() {
+  $(".product01_slider").slick({
+    slidesToShow: 1,
+    infinite: true,
+    dots: true,
+    arrows: false,
+    touchMove: true,
+    pauseOnHover: false,
+    autoplay: false,
+    autoplaySpeed: 3000,
+  });
+}
 
 function mvheight() {
   var setVhCustomVar = function () {
