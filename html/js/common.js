@@ -59,7 +59,11 @@ $(document).ready(function () {
       });
     }
   }
-  if ($("#product01").length) {
+  if ($("#product").length) {
+    productSlider();
+    $(".product_list img").matchHeight();
+  }
+  if ($("#product-detail").length) {
     productSlider01();
     $(".product_list01 img").matchHeight();
   }
@@ -123,6 +127,19 @@ function showMoreNews(e) {
     $("#news_box02 .btn_more").hide();
   });
 }
+function productSlider() {
+  $(".product_slider").slick({
+    slidesToShow: 1,
+    infinite: true,
+    dots: true,
+    arrows: false,
+    touchMove: false,
+    pauseOnHover: false,
+    autoplay: false,
+    autoplaySpeed: 3000,
+  });
+}
+
 function productSlider01() {
   $(".product01_slider").slick({
     slidesToShow: 1,
