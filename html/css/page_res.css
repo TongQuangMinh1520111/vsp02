@@ -555,7 +555,8 @@
 
   /*-----product-----*/
   #product.pages #p_mainvisual {
-    height: 390px;
+    height: 65.625vw;
+    max-height: 500;
     padding: 0;
   }
   #product #product_box01 .product_ttl {
